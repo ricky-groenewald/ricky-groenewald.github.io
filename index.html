@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/stylesheet.css">
+	<title>Algomaim - Simulation Demo</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="title noselect">
+    <p>Designing Algorithms</p>
+    <p class="koreantitle">도형 돌리기 프로그램</p>
+    <div class="grid-game shape1 slow" id="gg1">
+    </div>
+  </div>
+  <div class="content noselect">
+    <div>
+      <span class="dumbtitle">Problem</span>
+      <p class="korean">도형을 시계 방향으로 90° 만큼 10번 돌려야 할 것을 잘못하여 시계 반대 방향으로 90° 만큼 10번 돌린 모양을 보고, 바르게 돌린 모양을 구하는 프로그램의 알고리즘을 생각해 봅시다</p>
+      <div class="grid-game shape1">
+      </div>
+      <div class="korean" style="transform:translateY(-40px)">
+        잘못 돌린 모양
+        <p><br></p>
+      </div>
+      <ol class="korean">
+        <li>[동작 순서]</li>
+        <li>1. 잘못 돌린 모양을 잘못 돌린 횟수만큼 반대로 돌려 처음 모양을 구해요</li>
+        <li>2. 처음 모양을 바르게 돌려요</li>
+        <li>3. 바르게 돌린 모양을 보여줘요</li>
+      </ol>
+    </div>
+    <div>
+      <span class="dumbtitle">Understand</span>
+      <p class="korean">잘못 돌린 모양을 표 안의 모양으로 만들기 위해 시계 방향으로 90°만큼 몇 번 돌려야 하는지 횟수를 적어보고, 같은 모양을 만드는 횟수들의 규칙을 찾아 보세요</p>
+
+      <div class="grid-2h-21">
+        <div>
+          <table id="und-table">
+            <tr>
+              <th>모양</th>
+              <th colspan="3">돌리는 횟수</th>
+              <th class="wide">규칙</th>
+            </tr>
+            <tr>
+              <td><div class="tinygrid shape1"></div></td>
+              <td>0</td>
+              <td>4</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><div class="tinygrid shape1" style="transform:rotate(90deg)"></div></td>
+              <td>1</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><div class="tinygrid shape1" style="transform:rotate(180deg)"></div></td>
+              <td>2</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><div class="tinygrid shape1" style="transform:rotate(270deg)"></div></td>
+              <td>3</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+
+        <div>
+          <p class="koreantitle" id="understand-counter" style="font-size:400%; text-align:center; color:black;">0번</p>
+          <div class="grid-game shape1 quick" id="understand">
+          </div>
+          <input type="image" class="rotateButton mirrored" src="img/curved-arrow-clip-art.png" id="understand-anticlock"/>
+          <input type="image" class="rotateButton" src="img/curved-arrow-clip-art.png" id="understand-clock"/>
+        </div>
+      </div>
+
+      <p class="korean">프로그램이 효율적으로 처음 모양을 찾기 위해 아래의 명령을 몇 번 반복하는 것이 좋을지, 위에서 찾은 규칙을 이용하여 설명해 보세요</p>
+      <p class="korean">시계방향으로 90°만큼 돌려요</p>
+    </div>
+    <div id="step1div">
+      <span class="dumbtitle">Step 1</span>
+      <p class="korean">프로그램이 처음 모양을 찾은 뒤, 바르게 돌린 모양을 찾는 순서도를 완성해 보세요</p>
+      <div class="grid-2h-12">
+        <div class="svg-container">
+          <svg viewBox="0 0 250 330" preserveAspectRatio="xMinYMin meet" class="svg-content" xmlns="http://www.w3.org/2000/svg" id="flowchart1">
+
+           <g>
+            <path id="svg_17" d="m55.35101,159.30675l69.6489,-23.33329l69.64907,23.33329l-69.64907,23.33329l-69.6489,-23.33329z" stroke="#191919" fill="none"/>
+            <ellipse ry="20" rx="20" id="svg_1" cy="301.4902" cx="125" stroke="#191919" fill="#191919"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="14" id="svg_3" y="306.22703" x="107.30267" stroke-width="0" stroke="#191919" fill="#ffffff">2단계</text>
+            <line stroke-dasharray="2,2" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_4" y2="128.42096" x2="124.82456" y1="106.08776" x1="125.17544" stroke="#191919" fill="none"/>
+            <path transform="rotate(180 125 130.925)" id="svg_5" d="m121.14036,134.78504l3.85964,-7.71928l3.85964,7.71928l-7.71928,0z" stroke="#191919" fill="#191919"/>
+            <line stroke-dasharray="2,2" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_6" y2="68.0702" x2="124.82456" y1="45.0702" x1="125.17544" stroke="#191919" fill="none"/>
+            <path transform="rotate(180 125 70.5746)" id="svg_7" d="m121.14036,74.43428l3.85964,-7.71928l3.85964,7.71928l-7.71928,0z" stroke="#191919" fill="#191919"/>
+            <rect id="svg_8" height="29.82451" width="183" y="220.1756" x="33.5" stroke="#191919" fill="none"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="svg_12" y="155.96518" x="208.15774" stroke="#191919" fill="#191919">네</text>
+            <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="svg_14" y="164.38622" x="90.82243" stroke="#191919" fill="#191919">나머지 = 0 ?</text>
+            <line stroke-dasharray="2,2" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_15" y2="212.28045" x2="124.82456" y1="183" x1="125.17544" stroke="#191919" fill="none"/>
+            <path transform="rotate(-90 149.945 301.49)" id="svg_16" d="m146.08539,305.34984l3.85964,-7.71929l3.85964,7.71929l-7.71928,0z" stroke="#191919" fill="#191919"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="svg_20" y="239.4738" x="38.68437" stroke="#191919" fill="#ff0000">시계방향으로</text>
+            <path transform="rotate(90 52.7509 159.351)" id="svg_22" d="m48.89127,163.21053l3.85964,-7.71929l3.85964,7.71929l-7.71928,0z" stroke="#191919" fill="#191919"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="svg_23" y="239.47378" x="125.70175" stroke="#191919" fill="#191919">90°만큼 돌려요</text>
+            <rect id="svg_24" height="29.82451" width="197.54349" y="75.96533" x="26.22826" stroke="#191919" fill="none"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="svg_25" y="95.26354" x="121.49123" stroke="#191919" fill="#ff0000">4</text>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="svg_27" y="95.26353" x="140.08769" stroke="#191919" fill="#191919">(으)로 나눠요</text>
+            <ellipse ry="20" rx="20" id="svg_32" cy="25" cx="125" stroke="#191919" fill="#191919"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="16" id="svg_33" y="30.55553" x="108.99749" stroke-width="0" stroke="#191919" fill="#ffffff">시작</text>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="svg_34" y="95.26354" x="35.52648" stroke="#191919" fill="#191919">돌린 횟수를</text>
+            <line stroke-dasharray="2,2" id="svg_36" y2="235.4376" x2="21.8423" y1="235.4376" x1="33.7721" stroke="#191919" fill="none"/>
+            <line id="svg_37" y2="159" x2="22" y1="235.4376" x1="22" stroke-dasharray="2,2" stroke="#191919" fill="none"/>
+            <line id="svg_38" y2="159" x2="22" y1="159.29739" x1="54.12294" stroke-dasharray="2,2" stroke="#191919" fill="none"/>
+            <line id="svg_39" y2="159.29739" x2="228" y1="159.29739" x1="194.47356" stroke-dasharray="2,2" stroke="#191919" fill="none"/>
+            <line id="svg_40" y2="301.05152" x2="227.80683" y1="159.29739" x1="227.80683" stroke-dasharray="2,2" stroke="#191919" fill="none"/>
+            <line id="svg_41" y2="301.40239" x2="148.8596" y1="301.40239" x1="227.80683" stroke-dasharray="2,2" stroke="#191919" fill="none"/>
+            <path transform="rotate(179.518 125.033 214.785)" id="svg_42" d="m121.17316,218.64454l3.85964,-7.71929l3.85964,7.71929l-7.71928,0z" stroke="#191919" fill="#191919"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="svg_43" y="201.22825" x="128.15789" stroke="#191919" fill="#191919">아니요</text>
+           </g>
+          </svg>
+        </div>
+        <div style="width:90%; align-items:center;">
+          <div id="step1-counter-block">
+            <p class="koreantitle" id="step1-counter1" style="font-size:400%; text-align:center; color:#990000;">10번</p>
+            <p class="koreantitle" id="step1-counter2" style="font-size:400%; text-align:center; color:#990000;">시계 반대<br>나머지</p>
+          </div>
+          <div class="grid-game shape1 quick" id="step1">
+          </div>
+          <button class="btn dumbtitle" id="step1-start">Start</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="dumbtitle">Step 2</span>
+      <p class="korean">Now that it has been fixed, turn it the right way</p>
+      <div class="grid-2h-12">
+        <div class="svg-container">
+          <svg viewBox="0 0 250 330" preserveAspectRatio="xMinYMin meet" class="svg-content" xmlns="http://www.w3.org/2000/svg" id="flowchart2">
+
+           <g>
+            <path id="2svg_17" d="m55.35101,159.30675l69.6489,-23.33329l69.64907,23.33329l-69.64907,23.33329l-69.6489,-23.33329z" stroke="#191919" fill="none"/>
+            <ellipse ry="20" rx="20" id="2svg_1" cy="301.4902" cx="125" stroke="#191919" fill="#191919"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="16" id="2svg_3" y="307.22703" x="109.30267" stroke-width="0" stroke="#191919" fill="#ffffff">종료</text>
+            <line stroke-dasharray="2,2" stroke-linecap="undefined" stroke-linejoin="undefined" id="2svg_4" y2="128.42096" x2="124.82456" y1="106.08776" x1="125.17544" stroke="#191919" fill="none"/>
+            <path transform="rotate(180 125 130.925)" id="2svg_5" d="m121.14036,134.78504l3.85964,-7.71928l3.85964,7.71928l-7.71928,0z" stroke="#191919" fill="#191919"/>
+            <line stroke-dasharray="2,2" stroke-linecap="undefined" stroke-linejoin="undefined" id="2svg_6" y2="68.0702" x2="124.82456" y1="45.0702" x1="125.17544" stroke="#191919" fill="none"/>
+            <path transform="rotate(180 125 70.5746)" id="2svg_7" d="m121.14036,74.43428l3.85964,-7.71928l3.85964,7.71928l-7.71928,0z" stroke="#191919" fill="#191919"/>
+            <rect id="2svg_8" height="29.82451" width="183" y="220.1756" x="33.5" stroke="#191919" fill="none"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="2svg_12" y="155.96518" x="208.15774" stroke="#191919" fill="#191919">네</text>
+            <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="2svg_14" y="164.38622" x="90.82243" stroke="#191919" fill="#191919">나머지 = 0 ?</text>
+            <line stroke-dasharray="2,2" stroke-linecap="undefined" stroke-linejoin="undefined" id="2svg_15" y2="212.28045" x2="124.82456" y1="183" x1="125.17544" stroke="#191919" fill="none"/>
+            <path transform="rotate(-90 149.945 301.49)" id="2svg_16" d="m146.08539,305.34984l3.85964,-7.71929l3.85964,7.71929l-7.71928,0z" stroke="#191919" fill="#191919"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="2svg_20" y="239.4738" x="38.68437" stroke="#191919" fill="#ff0000">시계방향으로</text>
+            <path transform="rotate(90 52.7509 159.351)" id="2svg_22" d="m48.89127,163.21053l3.85964,-7.71929l3.85964,7.71929l-7.71928,0z" stroke="#191919" fill="#191919"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="2svg_23" y="239.47378" x="125.70175" stroke="#191919" fill="#191919">90°만큼 돌려요</text>
+            <rect stroke="#191919" id="2svg_24" height="29.82451" width="225.27507" y="75.96533" x="12.36246" fill="none"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="2svg_25" y="95.19644" x="137.85741" stroke="#191919" fill="#ff0000">4</text>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="2svg_27" y="95.19643" x="150.08925" stroke="#191919" fill="#191919">(으)로 나눠요</text>
+            <ellipse ry="20" rx="20" id="2svg_32" cy="25" cx="125" stroke="#191919" fill="#191919"/>
+            <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="14" id="2svg_33" y="30.55553" x="106.99749" stroke-width="0" stroke="#191919" fill="#ffffff">2단계</text>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="2svg_34" y="95.19644" x="20.97877" stroke="#191919" fill="#191919">돌려야 하는 횟수를</text>
+            <line stroke-dasharray="2,2" id="2svg_36" y2="235.4376" x2="21.8423" y1="235.4376" x1="33.7721" stroke="#191919" fill="none"/>
+            <line id="2svg_37" y2="159" x2="22" y1="235.4376" x1="22" stroke-dasharray="2,2" stroke="#191919" fill="none"/>
+            <line id="2svg_38" y2="159" x2="22" y1="159.29739" x1="54.12294" stroke-dasharray="2,2" stroke="#191919" fill="none"/>
+            <line id="2svg_39" y2="159.29739" x2="228" y1="159.29739" x1="194.47356" stroke-dasharray="2,2" stroke="#191919" fill="none"/>
+            <line id="2svg_40" y2="301.05152" x2="227.80683" y1="159.29739" x1="227.80683" stroke-dasharray="2,2" stroke="#191919" fill="none"/>
+            <line id="2svg_41" y2="301.40239" x2="148.8596" y1="301.40239" x1="227.80683" stroke-dasharray="2,2" stroke="#191919" fill="none"/>
+            <path transform="rotate(179.518 125.033 214.785)" id="2svg_42" d="m121.17316,218.64454l3.85964,-7.71929l3.85964,7.71929l-7.71928,0z" stroke="#191919" fill="#191919"/>
+            <text xml:space="preserve" text-anchor="start" font-family="Noto Sans KR" font-size="13" stroke-width="0" id="2svg_43" y="201.22825" x="128.15789" stroke="#191919" fill="#191919">아니요</text>
+           </g>
+          </svg>
+        </div>
+        <div style="width:90%; align-items:center;">
+          <div id="step2-counter-block">
+            <p class="koreantitle" id="step2-counter1" style="font-size:400%; text-align:center; color:black;">10번</p>
+            <p class="koreantitle" id="step2-counter2" style="font-size:400%; text-align:center; color:black;">시계 방향<br>나머지</p>
+          </div>
+          <div class="grid-game shape1 quick" id="step2" style="transform:rotate(180deg)">
+          </div>
+          <button class="btn dumbtitle" id="step2-start">Start</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="dumbtitle">Try it!</span>
+      <p class="korean">프로그램을 실행하고, 내가 생각한 알고리즘대로 문제를 해결할 수 있는지 확인해 보세요</p>
+			<div>
+				<span class="koreantitle" style="font-size:400%; text-align:center; color:#000099; transform:translateY(20px)">I made mistake and turned it </span><span class="koreantitle" style="font-size:400%; text-align:center; color:#FF006D; transform:translateY(20px)" id="mistake1">6</span><span class="koreantitle" style="font-size:400%; text-align:center; color:#000099; transform:translateY(20px)"> times counter-clockwise.<br>I had to turn it </span><span class="koreantitle" style="font-size:400%; text-align:center; color:#FF006D; transform:translateY(20px)" id="mistake2">5</span><span class="koreantitle" style="font-size:400%; text-align:center; color:#000099; transform:translateY(20px)"> times clockwise.</span>
+				<div class="grid-2h">
+					<div>
+						<p class="koreantitle" style="font-size:400%; text-align:center; color:black; transform:translateY(20px)">What should my final shape be?</p>
+						<div class="grid-2full" style="margin:1rem auto;">
+							<div class="tinygrid shape1 clickme" style="margin:1rem auto;" id="tiny0deg"></div>
+							<div class="tinygrid shape1 clickme" style="transform:rotate(90deg); margin:1rem auto;" id="tiny90deg"></div>
+							<div class="tinygrid shape1 clickme" style="transform:rotate(180deg); margin:1rem auto;" id="tiny180deg"></div>
+							<div class="tinygrid shape1 clickme" style="transform:rotate(270deg); margin:1rem auto;" id="tiny270deg"></div>
+						</div>
+					</div>
+					<div>
+						<p class="koreantitle" style="font-size:400%; text-align:center; color:black; transform:translateY(20px)" id="result">This is my current shape</p>
+						<div class="grid-game shape1 quick" id="try"></div>
+					</div>
+				</div>
+			</div>
+    </div>
+    <div>
+      <span class="dumbtitle">Discussion</span>
+      <p class="korean">다른 방식의 알고리즘을 생각해 보고, 친구들에게 설명해 보세요</p>
+    </div>
+  </div>
+  <div class="footer noselect">
+    <p>Copyright &copy; CREVERSE Inc.</p>
+    <img src="https://www.creverse.com/assets/image/creverse.jpg" style="height:100px">
+  </div>
+</body>
+<script src="js/script.js"></script>
+</html>
